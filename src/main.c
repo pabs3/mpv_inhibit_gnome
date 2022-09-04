@@ -124,7 +124,7 @@ int mpv_open_cplugin(mpv_handle *handle)
 	globals.gsm = GSM_init();
 	if(globals.gsm == NULL)
 	{
-		return -1; // Error while opening dbus
+		return -1; // Error while opening D-Bus
 	}
 
 	for(unsigned i = 0; flag_prop_names[i].name; i++)
