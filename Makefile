@@ -9,11 +9,11 @@ SRCS := $(shell find $(SRC_DIR) -name *.c)
 OBJS := $(patsubst src/%.c,build/%.o,$(SRCS))
 
 $(TARGET): $(OBJS)
-	-@mkdir -p $(@D)
+	@mkdir -p $(@D)
 	gcc $^ -o $@ $(CFLAGS) -shared $(LDFLAGS)
 
 build/%.o: src/%.c
-	-@mkdir -p $(@D)
+	@mkdir -p $(@D)
 	gcc -c $< -o $@ $(CFLAGS) -fPIC $(LDFLAGS)
 
 define INSTALL_PLUGIN
@@ -22,7 +22,7 @@ $(1): $$(TARGET)
 	install -Dt "$(3)" $$<
 
 $(2):
-	-rm -f "$(3)/$$(notdir $$(TARGET))"
+	rm -f "$(3)/$$(notdir $$(TARGET))"
 endef
 
 $(eval $(call INSTALL_PLUGIN,install,uninstall,$(XDG_CONFIG_DIR)/mpv/scripts))
@@ -30,5 +30,5 @@ $(eval $(call INSTALL_PLUGIN,sys-install,sys-uninstall,/usr/share/mpv/scripts))
 
 .PHONY: clean
 clean:
-	-rm -rf build
-	-rm -f $(TARGET)
+	rm -rf build
+	rm -f $(TARGET)
