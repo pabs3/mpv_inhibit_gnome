@@ -1,4 +1,5 @@
 #include "dbus_helper.h"
+#include <stdarg.h>
 #include <stdlib.h>
 
 bool DBH_method_check(DBH *dbh, const char *name, const char *path,
