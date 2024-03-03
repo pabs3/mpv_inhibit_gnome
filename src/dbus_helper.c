@@ -18,6 +18,8 @@ bool DBH_method_check(DBH *dbh, const char *name, const char *path,
 
 	dbus_message_unref(method_call);
 
+	va_end(args);
+
 	return result;
 }
 
@@ -44,8 +46,10 @@ DBusMessage *DBH_call(DBH *dbh, const char *name, const char *path,
 		{
 			dbus_message_unref(method_reply);
 		}
-		return NULL;
+		method_reply = NULL;
 	}
+
+	va_end(args);
 
 	return method_reply;
 }
